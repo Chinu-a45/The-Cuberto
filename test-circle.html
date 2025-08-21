@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .circle {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 11px;
+            width: 11px;
+            background-color: #fff;
+            border-radius: 50%;
+            z-index: 999999;
+            transform-origin: center;
+        }
+
+        .test-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle"></div>
+    <div class="test-text">
+        <h1>Circle Test</h1>
+        <p>Move your mouse around to test the circle</p>
+        <p>Fast movement should make it expand</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script>
+        const circle = document.querySelector(".circle");
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+        let xscale = 1;
+        let yscale = 1;
+        let xprev = 0;
+        let yprev = 0;
+
+        function circleChaptaKaro() {
+            window.addEventListener("mousemove", (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+
+                const deltaX = Math.abs(mouseX - xprev);
+                const deltaY = Math.abs(mouseY - yprev);
+
+                // Squeeze based on speed
+                xscale = gsap.utils.clamp(0.9, 1.5, deltaX);
+                yscale = gsap.utils.clamp(0.9, 1.5, deltaY);
+
+                xprev = mouseX;
+                yprev = mouseY;
+            });
+
+            animateCircle();
+        }
+
+        function animateCircle() {
+            // Lerp for smoothness
+            currentX += (mouseX - currentX) * 0.2;
+            currentY += (mouseY - currentY) * 0.2;
+
+            // Smooth scale back to normal
+            const scaleX = 1 + (xscale - 1) * 0.2;
+            const scaleY = 1 + (yscale - 1) * 0.2;
+
+            // Calculate dynamic offset based on current scale
+            const offsetX = (11 * scaleX) / 2;
+            const offsetY = (11 * scaleY) / 2;
+
+            circle.style.transform = `translate(${currentX - offsetX}px, ${currentY - offsetY}px) scale(${scaleX}, ${scaleY})`;
+
+            requestAnimationFrame(animateCircle);
+        }
+
+        circleChaptaKaro();
+    </script>
+</body>
+</html> 

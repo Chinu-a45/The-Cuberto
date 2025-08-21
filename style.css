@@ -1,0 +1,418 @@
+@font-face {
+  font-family: 'General Sans';
+  src: url('GeneralSans-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'General Sans';
+}
+
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+
+.circle{
+    pointer-events: none;
+    position: fixed;
+    overflow: visible;
+    top: 0;
+    left: 0;
+    transition: all .2s cubic-bezier(0.19, 1, 0.22, 1);
+    /* transition: width .5s ease; */
+    height: 11px;
+    width: 11px;
+    background-color: #fff;
+    border-radius: 50%;
+    z-index: 999999;
+    transform-origin: center;
+    /* Ensure it's above everything including scroll containers */
+    position: fixed !important;
+    pointer-events: none;
+}
+
+body:has( .btn:hover) .circle{
+    width: 20px;
+    height: 20px;
+    mix-blend-mode: difference;
+}
+
+main{
+    position: relative;
+    width: 100%;
+    background-color: #000;
+    color: #FFFFFF;
+    overflow-x: hidden;
+}
+
+nav{
+    padding: 0 3vw;
+    height: 80px;
+    /* border-bottom: 1px solid #dadada; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav a{
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: 'General Sans';
+
+}
+
+nav h3,nav a{
+    font-size: 1.4vw;
+    font-weight: 600;
+}
+
+nav h3{
+    text-transform: uppercase;
+    font-size: 1.2vw;
+}
+
+
+.heading{
+    padding: 0 3vw;
+    margin-top: 3.5vw;
+    text-transform: uppercase;
+    /* width: fit-content; */
+}
+
+.heading h1{
+    font-size: 9.4vw;
+    line-height: 95%;
+    letter-spacing: .4vw;
+    font-weight: 1200;
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+.heading .div{
+    width: fit-content;
+    padding-left:12vw ;
+    display: flex;
+    align-items: end;
+    flex-direction: column;
+}
+
+.heading div h5{
+    transform: translateY(-130%);
+    margin-top: 12px;
+    font-size: 1.25vw;
+    opacity: 0;
+}
+
+.chhotiheadings{
+    padding: 0 3vw;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.chhotiheadings h5{
+    transform: translateY(-100%);
+    text-transform: uppercase;
+    font-size: 1.25vw;
+    opacity: 0;
+}
+
+.chhotiheadings1{
+    padding: 0 3vw;
+    margin-top: 60px;
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.chhotiheadings1 h5{
+    text-transform: uppercase;
+    font-size: 1.25vw;
+    opacity: .9;
+}
+
+.chhotiheadings1 .no1,.chhotiheadings1 .no2{
+    display: flex;
+    gap: .6vw;
+   
+}
+
+/* Fix for the wrapped h5 elements in no1 */
+.chhotiheadings1 .no1 > div{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Ensure the arrow stays aligned with the first line of text */
+.chhotiheadings1 .no1 i{
+    align-self: flex-start;
+    margin-top: 0.1em; /* Fine-tune this value to align with first line */
+}
+
+.chhotiheadings1 i{
+    font-size: 1.5vw;
+    font-weight: 100;
+}
+
+/* this is the second page */
+
+#works .box{
+    height: 14vw;
+    margin: 0 3vw;
+    width: 84%;
+    border-bottom: 1px solid #dadada8a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.sp1,.sp2{
+    transition: all .5s ease-in-out;
+}
+
+.box:hover .sp1{
+    transform: translateX(4vw);
+    opacity: 40% !important
+}
+.box:hover .sp2{
+    /* transform: translateX(4vw); */
+    opacity: 40% !important
+}
+
+#works div span{
+    text-transform: uppercase;
+    font-size: 6vw;
+    opacity: .65;
+    font-weight: 900;
+}
+
+#works .sp2{
+    font-size: 1.3vw;
+    opacity: 1;
+    font-weight: 600;
+}
+
+#works .view-work{
+    height:20vw ;
+    padding: 0 3vw;
+}
+
+.btn{
+    font-size: 1.3vw;
+    color: white;
+    background-color: black;
+    padding: 5px 2vw;
+    border: .001px solid white;
+    border-radius: 50px;
+}
+
+.view-work button{
+    margin-top: 4.5vw;
+}
+
+.scroller{
+    height: 11.6vw;
+    border-top: 1px solid rgba(255, 255, 255, 0.702);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.625);
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    
+    gap: 80px;
+}
+
+@keyframes scroll {
+    to{
+        transform: translate(calc(-100% * 6 - 6 * 80px));
+    }
+}
+
+.scroller .scroll{
+    flex-shrink: 0;
+    animation: scroll 8s linear infinite;
+    height: 80%;
+    width: 150px; 
+    /* background-color: red; */
+    /* border: 1px solid white; */
+    object-fit: contain;
+}
+.scroller .scroll img{
+    width: 100%;
+    height: 100%;
+}
+
+
+#about-me-page{
+    padding-top: 24vw;
+}
+
+.about-me{
+    margin: 0 3vw;
+ 
+}
+.about-me>div{
+    gap: 5vw;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 3vw;
+
+}
+.about-me .image{
+    width: 20vw;
+    height: 20vw;
+}
+.image img{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.about-me .content h4{
+    font-weight: 400;
+    font-size: 1.1vw;
+    opacity: 0.65;
+    text-transform: uppercase;
+}
+
+.about-me .content{
+    width: 36vw;
+}
+.about-me .content p{
+    font-size: 1.4vw;
+    line-height: 160%;
+}
+.about-me .btn{
+    margin-top: 3vw;
+}
+
+.subscribe{
+    width: fit-content;
+    margin-top: 12vw;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    text-transform: uppercase;
+}
+
+.subscribe p{
+    font-size: 1vw;
+    color: white;
+    opacity: .65;
+}
+
+.subscribe span{
+    font-size: 1.25vw;
+
+}
+.subscribe span i{
+    margin-left: 10px;
+    font-size: 1.3em;
+}
+
+footer{
+    margin: 0 3vw;
+    margin-top: 10vw;
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25vw;
+    color: white;
+}
+
+footer .foot1, footer .foot2{
+    display: flex;
+    gap: 3vw;
+}
+
+footer h4{
+    margin: 25px 0;
+    text-transform: uppercase;
+}
+
+/*to idhar hogi kuch animation wali baat */
+
+.wrapper{
+    width: fit-content;
+    /* background-color: red; */
+    overflow: hidden;
+    
+}
+
+.box{
+    position: relative;
+}
+
+.box .image{
+    object-fit: cover;
+    opacity: 0;
+    position: absolute ;
+    transform: translate(-50%,-50%);
+    z-index: 999;
+    width: 30vw;
+    height: 20vw;
+    border-radius: 6%;
+    transition: all ease .2s;
+    pointer-events: none;
+}
+
+.box .image img{
+    width: 100%;
+    border-radius: 8px;
+    height: 100%;
+}
+
+
+/* idhar hoga hover aur arrow animation */
+.hover{
+    position: relative;
+}
+.hover::after{
+    content: "";
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    z-index: 10;
+    border-radius: 10%;
+   border-bottom: 1.5px solid white;
+   transform: scaleX(0);
+   transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.hover:hover:after{
+    transform: scaleX(1);
+}
+
+.hover:hover{
+    cursor: pointer;
+}
+
+.hover.arrow i,
+.hover.arrow span i{
+    transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    transform-origin: center;
+}
+
+.hover.arrow:hover i,
+.hover.arrow:hover span i{
+    transform: rotate(45deg);
+}
+.subscribe span i,
+.hover.arrow i,
+.hover.arrow span i {
+    display: inline-block !important;
+}
+
+/* Override Locomotive Scroll overflow for the circle */
+
